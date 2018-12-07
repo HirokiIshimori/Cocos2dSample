@@ -19,10 +19,10 @@ public:
     virtual bool update(const float &delta) = 0;
 protected:
     explicit Mover() {}
+    cocos2d::Vec2 mMoveVec;
 private:
     Mover(const Mover& rhs);
     Mover& operator=(const Mover& rhs);
-    cocos2d::Vec2 mMoveVec;
 };
 
 #endif /* Mover_hpp */

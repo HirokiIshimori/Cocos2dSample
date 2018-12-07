@@ -53,6 +53,10 @@
 		662213BD21B6079100F4117A /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 662213BB21B6079100F4117A /* Player.cpp */; };
 		662213C021B614C300F4117A /* myShip.png in Resources */ = {isa = PBXBuildFile; fileRef = 662213BE21B614C300F4117A /* myShip.png */; };
 		662213C121B614C300F4117A /* enemy.png in Resources */ = {isa = PBXBuildFile; fileRef = 662213BF21B614C300F4117A /* enemy.png */; };
+		66FA203821BA29EB001C2537 /* bullet1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66FA203621BA29EB001C2537 /* bullet1.plist */; };
+		66FA203B21BA308A001C2537 /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66FA203921BA308A001C2537 /* Bullet.cpp */; };
+		66FA203E21BA43F3001C2537 /* Objects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66FA203C21BA43F3001C2537 /* Objects.cpp */; };
+		66FA204221BA68E4001C2537 /* bullet2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66FA204021BA68E4001C2537 /* bullet2.plist */; };
 		8262943E1AAF051F00CB7CF7 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8262943D1AAF051F00CB7CF7 /* Security.framework */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
@@ -155,6 +159,12 @@
 		662213BC21B6079100F4117A /* Player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Player.hpp; sourceTree = "<group>"; };
 		662213BE21B614C300F4117A /* myShip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = myShip.png; sourceTree = "<group>"; };
 		662213BF21B614C300F4117A /* enemy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy.png; sourceTree = "<group>"; };
+		66FA203621BA29EB001C2537 /* bullet1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bullet1.plist; sourceTree = "<group>"; };
+		66FA203921BA308A001C2537 /* Bullet.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Bullet.cpp; sourceTree = "<group>"; };
+		66FA203A21BA308A001C2537 /* Bullet.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Bullet.hpp; sourceTree = "<group>"; };
+		66FA203C21BA43F3001C2537 /* Objects.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Objects.cpp; sourceTree = "<group>"; };
+		66FA203D21BA43F3001C2537 /* Objects.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Objects.hpp; sourceTree = "<group>"; };
+		66FA204021BA68E4001C2537 /* bullet2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bullet2.plist; sourceTree = "<group>"; };
 		8262943D1AAF051F00CB7CF7 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -298,6 +308,8 @@
 				46880B7A19C43A67006E1F66 /* HelloWorld.png */,
 				662213BF21B614C300F4117A /* enemy.png */,
 				662213BE21B614C300F4117A /* myShip.png */,
+				66FA203621BA29EB001C2537 /* bullet1.plist */,
+				66FA204021BA68E4001C2537 /* bullet2.plist */,
 			);
 			name = Resources;
 			path = ../Resources;
@@ -322,7 +334,11 @@
 				660DF07E21B7726000C904E4 /* Character.hpp */,
 				662213BB21B6079100F4117A /* Player.cpp */,
 				662213BC21B6079100F4117A /* Player.hpp */,
+				66FA203921BA308A001C2537 /* Bullet.cpp */,
+				66FA203A21BA308A001C2537 /* Bullet.hpp */,
 				662213BA21B6062000F4117A /* ZIndex.hpp */,
+				66FA203C21BA43F3001C2537 /* Objects.cpp */,
+				66FA203D21BA43F3001C2537 /* Objects.hpp */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -457,6 +473,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46880B8119C43A67006E1F66 /* HelloWorld.png in Resources */,
+				66FA203821BA29EB001C2537 /* bullet1.plist in Resources */,
 				1A88B2641FC3D9C9005C14AE /* Images.xcassets in Resources */,
 				662213C121B614C300F4117A /* enemy.png in Resources */,
 				46880B7D19C43A67006E1F66 /* CloseSelected.png in Resources */,
@@ -464,6 +481,7 @@
 				3EACC98F19EE6D4300EB3C5E /* res in Resources */,
 				1AF87B891F6F781D007BE51C /* LaunchScreenBackground.png in Resources */,
 				46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */,
+				66FA204221BA68E4001C2537 /* bullet2.plist in Resources */,
 				662213C021B614C300F4117A /* myShip.png in Resources */,
 				1AF87B881F6F781D007BE51C /* LaunchScreen.storyboard in Resources */,
 			);
@@ -494,8 +512,10 @@
 				1AF87B781F6F77F7007BE51C /* AppController.mm in Sources */,
 				662213AC21B5197000F4117A /* MultiLayerScene.cpp in Sources */,
 				662213BD21B6079100F4117A /* Player.cpp in Sources */,
+				66FA203E21BA43F3001C2537 /* Objects.cpp in Sources */,
 				1AF87B8B1F6F782A007BE51C /* RootViewController.mm in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				66FA203B21BA308A001C2537 /* Bullet.cpp in Sources */,
 				1AF87B8A1F6F7822007BE51C /* main.m in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				660DF07F21B7726000C904E4 /* Character.cpp in Sources */,
