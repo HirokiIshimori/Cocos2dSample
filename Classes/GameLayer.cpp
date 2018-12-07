@@ -6,6 +6,7 @@
 //  ゲーム部分のレイヤー.
 
 #include "GameLayer.hpp"
+#include "Player.hpp"
 
 using namespace cocos2d;
 using namespace std;
@@ -24,7 +25,10 @@ bool GameLayer::init()
     auto label = Label::createWithTTF("GameLayer", "fonts/Marker Felt.ttf", 24);
     auto winSize = Director::getInstance()->getWinSize();
     label->setPosition(Vec2(winSize.width * 0.5, winSize.height * 0.5));
-    this->addChild(label, 1);
+    this->addChild(label, -1);
+    
+    mPlayer = Player::create(Vec2(winSize.width * 0.5, winSize.height * 0.25), this);
+    mPlayer->retain();
     
     // 更新処理を行うようにする.
     this->scheduleUpdate();
@@ -38,9 +42,9 @@ bool GameLayer::init()
  @param delta 前のフレームからの経過時間.
  */
 void GameLayer::update(float delta) {
-    
+    mPlayer->update(delta);
 }
 
 GameLayer::~GameLayer() {
-
+    CC_SAFE_RELEASE_NULL(mPlayer);
 }

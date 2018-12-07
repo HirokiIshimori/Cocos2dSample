@@ -15,7 +15,8 @@ bool TouchLayer::init()
         return false;
     }
     
-    this->touchON();
+    reset();
+    touchON();
     return true;
 }
 
@@ -31,7 +32,6 @@ void TouchLayer::touchON()
     mTouchEvent->onTouchMoved = CC_CALLBACK_2(TouchLayer::onTouchMoved, this);
     mTouchEvent->onTouchEnded = CC_CALLBACK_2(TouchLayer::onTouchEnded, this);
     mTouchEvent->onTouchCancelled = CC_CALLBACK_2(TouchLayer::onTouchCancelled, this);
-    
     dispatcher->addEventListenerWithSceneGraphPriority(mTouchEvent, this);
 }
 
@@ -51,8 +51,11 @@ void TouchLayer::touchOff() {
  */
 bool TouchLayer::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event){
     CCLOG("touch Began");
-    auto id = touch->getID();               // タッチ ID を取得できる.
-    auto touchPos = touch->getLocation();   // タッチ座標を取得できる.
+    if (mTouchId >= 0) {
+        return false;
+    }
+    mStartPoint = touch->getLocation();   // タッチ座標を取得できる.
+    mTouchId = touch->getID();
     return true;
 }
 
@@ -64,7 +67,9 @@ bool TouchLayer::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event){
  */
 void TouchLayer::onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *event){
     CCLOG("touch Moved");
-    Point touchPos = touch->getLocation();
+    if (mTouchId == touch->getID()) {
+        mMovePoint = touch->getLocation();
+    }
 }
 
 /**
@@ -75,6 +80,9 @@ void TouchLayer::onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *event){
  */
 void TouchLayer::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *event){
     CCLOG("touch Ended");
+    if (mTouchId == touch->getID()) {
+        reset();
+    }
 }
 
 /**
@@ -85,4 +93,21 @@ void TouchLayer::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *event){
  */
 void TouchLayer::onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event *event){
     CCLOG("touch Canceled");
+    if (mTouchId == touch->getID()) {
+        reset();
+    }
+}
+
+Vec2 TouchLayer::getStartPoint() const {
+    return mStartPoint;
+}
+
+Vec2 TouchLayer::getMovePoint() const {
+    return mMovePoint;
+}
+
+void TouchLayer::reset() {
+    mStartPoint = Vec2(-1, -1);
+    mMovePoint = Vec2(-1, -1);
+    mTouchId = -1;
 }

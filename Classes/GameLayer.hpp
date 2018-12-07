@@ -8,6 +8,8 @@
 #ifndef GameLayer_hpp
 #define GameLayer_hpp
 
+class Player;
+
 class GameLayer : public cocos2d::Layer
 {
 public:
@@ -21,6 +23,8 @@ private:
     virtual ~GameLayer();
     
     void update(float delta) override;
+    
+    Player* mPlayer;
 };
 
 #endif /* GameLayer_hpp */

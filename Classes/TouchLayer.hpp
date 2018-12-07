@@ -20,6 +20,9 @@ public:
     void touchOff();
     virtual ~TouchLayer(){}
     
+    cocos2d::Vec2 getStartPoint() const;
+    cocos2d::Vec2 getMovePoint() const;
+    
 private:
     TouchLayer(){};
     TouchLayer(const TouchLayer &rhs);
@@ -29,8 +32,11 @@ private:
     void onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *event);
     void onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *event);
     void onTouchCancelled(cocos2d::Touch *touch, cocos2d::Event *event);
+    void reset();
     
     cocos2d::EventListenerTouchOneByOne* mTouchEvent;
+    cocos2d::Vec2 mStartPoint, mMovePoint;
+    int mTouchId;
 };
 
 #endif /* TouchLayer_hpp */
