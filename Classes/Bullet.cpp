@@ -8,9 +8,13 @@
 #include "Bullet.hpp"
 #include "MultiLayerScene.hpp"
 #include "GameLayer.hpp"
+#include "MathLib.hpp"
+#include "Objects.hpp"
 
 using namespace cocos2d;
 using namespace std;
+
+ParticleBatchNode* Bullet::mEffectNode = nullptr;
 
 Bullet* Bullet::create(const Vec2 &pos, const Vec2 &moveVec, const string& fileName, const ZIndex& z) {
     Bullet *pBullet = new Bullet();
@@ -31,12 +35,20 @@ bool Bullet::init(const Vec2 &pos, const Vec2 &moveVec, const string& fileName, 
     if (mParticle == nullptr) {
         return false;
     }
+    
+    auto gameLayer = MultiLayerScene::sharedLayer()->gameLayer();
+    
+    if (Bullet::mEffectNode == nullptr) {
+        Bullet::mEffectNode = ParticleBatchNode::create("bullet1.png");
+        gameLayer->addChild(mEffectNode, ZWeapon);
+    }
+    
     mParticle->retain();
     mParticle->resetSystem();
     mParticle->setPositionType(ParticleSystem::PositionType::GROUPED);
     mParticle->setPosition(pos);
     mParticle->setAutoRemoveOnFinish(true);
-    MultiLayerScene::sharedLayer()->gameLayer()->addChild(mParticle, z);
+    Bullet::mEffectNode->addChild(mParticle, z);
     return this->Mover::init(moveVec);
 }
 
@@ -56,10 +68,33 @@ bool Bullet::update(const float& delta) {
     return true;
 }
 
-void Bullet::shootDirectionalWeapon(const Vec2 &position, const float &speed, const float &angle) {
+void Bullet::shootDirectionalBullet(const Vec2 &position, const float &speed, const float &angle, const BulletType& type) {
+    string fileName;
+    ZIndex z;
     
+    switch (type) {
+        case BulletMyChara:
+            fileName = "bullet1.plist";
+            z = ZWeapon;
+            break;
+        case BulletEnemy:
+            fileName = "bullet2.plist";
+            z = ZBullet;
+        break;
+    }
+    auto bullet = Bullet::create(position, MathLib::radianToVec(angle) * speed, fileName, z);
+    bullet->retain();
+    Objects::addBullet(bullet);
+}
+
+void Bullet::clearBatchNode() {
+    if (Bullet::mEffectNode != nullptr) {
+        Bullet::mEffectNode->removeFromParentAndCleanup(true);
+        Bullet::mEffectNode = nullptr;
+    }
 }
 
 Bullet::~Bullet() {
+    mParticle->removeFromParentAndCleanup(true);
     CC_SAFE_RELEASE_NULL(mParticle);
 }

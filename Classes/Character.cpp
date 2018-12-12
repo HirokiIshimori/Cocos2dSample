@@ -27,5 +27,6 @@ bool Character::init(const Vec2 &pos, const Vec2 &moveVec, const ZIndex &zIndex,
  @return
  */
 Character::~Character() {
+    mSprite->removeFromParentAndCleanup(true);
     CC_SAFE_RELEASE_NULL(mSprite);
 }

@@ -17,11 +17,12 @@ public:
     virtual bool update(const float &delta) override;
     virtual ~Player();
 private:
-    explicit Player(){}
+    explicit Player(): mAnimFrame(0){}
     Player(const Player& rhs);
     Player& operator=(const Player& rhs);
     
     cocos2d::Vec2 mStartMovePoint;
+    int mAnimFrame;
 };
 
 #endif /* Player_hpp */

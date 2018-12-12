@@ -14,13 +14,14 @@ class Bullet;
 
 class Objects {
 public:
-    void addBullet(Bullet* bullet);
-    void update(const float &delta);
+    static void reset();
+    static void addBullet(Bullet* bullet);
+    static void update(const float &delta);
 private:
     explicit Objects();
     Objects(const Objects& rhs);
     Objects& operator=(const Objects& rhs);
-    std::vector<std::shared_ptr<Bullet>> mBullets;
+    static std::vector<std::shared_ptr<Bullet>> mBullets;
 };
 
 #endif /* Objects_hpp */

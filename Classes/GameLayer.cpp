@@ -7,6 +7,7 @@
 
 #include "GameLayer.hpp"
 #include "Player.hpp"
+#include "Objects.hpp"
 
 using namespace cocos2d;
 using namespace std;
@@ -42,9 +43,11 @@ bool GameLayer::init()
  @param delta 前のフレームからの経過時間.
  */
 void GameLayer::update(float delta) {
+    Objects::update(delta);
     mPlayer->update(delta);
 }
 
 GameLayer::~GameLayer() {
     CC_SAFE_RELEASE_NULL(mPlayer);
+    Objects::reset();
 }

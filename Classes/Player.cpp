@@ -8,6 +8,8 @@
 #include "Player.hpp"
 #include "MultiLayerScene.hpp"
 #include "TouchLayer.hpp"
+#include "Bullet.hpp"
+#include "MathLib.hpp"
 
 using namespace cocos2d;
 using namespace std;
@@ -35,6 +37,14 @@ bool Player::update(const float &delta) {
     auto touchLayer = MultiLayerScene::sharedLayer()->touchLayer();
     auto startPoint = touchLayer->getStartPoint();
     auto winSize = Director::getInstance()->getWinSize();
+    
+    if (mAnimFrame % 4 == 0) {
+        auto pos = mSprite->getPosition();
+        Bullet::shootDirectionalBullet(Vec2(pos.x, pos.y + 10), 10, 90 * MathLib::DEG_TO_RAD, BulletMyChara);
+    }
+    
+    ++mAnimFrame;
+    
     if (startPoint.x < 0 && startPoint.y < 0) {
         mStartMovePoint = Vec2(-1, -1);
         return true;
