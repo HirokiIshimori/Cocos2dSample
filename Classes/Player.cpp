@@ -29,7 +29,6 @@ Player* Player::create(const Vec2 &pos, Layer* layer) {
 }
 
 bool Player::init(const Vec2 &pos, Layer* layer) {
-    mStartMovePoint = Vec2(-1, -1);
     return this->Character::init(pos, Vec2::ZERO, ZPlayer, layer, "myShip.png");
 }
 

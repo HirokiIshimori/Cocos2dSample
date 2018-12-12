@@ -87,6 +87,12 @@ void Bullet::shootDirectionalBullet(const Vec2 &position, const float &speed, co
     Objects::addBullet(bullet);
 }
 
+void Bullet::shootDirectionalNWayBullets(const cocos2d::Vec2 &position, const float &speed, const float &angle, const float &angleRange, const int &count, BulletType type) {
+    for (int i = 0; i < count; i++) {
+        shootDirectionalBullet(position, speed, angle-angleRange/2+angleRange*i/(count-1), type);
+    }
+}
+
 void Bullet::clearBatchNode() {
     if (Bullet::mEffectNode != nullptr) {
         Bullet::mEffectNode->removeFromParentAndCleanup(true);

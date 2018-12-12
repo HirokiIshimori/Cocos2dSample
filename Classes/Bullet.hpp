@@ -22,6 +22,7 @@ public:
     virtual bool update(const float& delta) override;
     virtual ~Bullet();
     static void shootDirectionalBullet(const cocos2d::Vec2 &position, const float &speed, const float &angle, const BulletType& type);
+    static void shootDirectionalNWayBullets(const cocos2d::Vec2 &position, const float &speed, const float &angle, const float &angleRange, const int &count, BulletType type);
     static void clearBatchNode();
 protected:
     cocos2d::ParticleSystemQuad* mParticle;

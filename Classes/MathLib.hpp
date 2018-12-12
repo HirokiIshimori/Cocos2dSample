@@ -21,6 +21,10 @@ public:
     static cocos2d::Vec2 radianToVec(const float &rad) {
         return cocos2d::Vec2(cosf(rad), sinf(rad));
     }
+    
+    static cocos2d::Vec2 getPointOnCircumference(const cocos2d::Vec2 &centerPos, const float &r, const float &angle) {
+        return cocos2d::Vec2(centerPos.x + r * cosf(angle), centerPos.y + r * sinf(angle));
+    }
 };
 
 #endif /* MathLib_hpp */

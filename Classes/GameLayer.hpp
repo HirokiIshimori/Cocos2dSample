@@ -9,6 +9,7 @@
 #define GameLayer_hpp
 
 class Player;
+class Enemy;
 
 class GameLayer : public cocos2d::Layer
 {
@@ -25,6 +26,7 @@ private:
     void update(float delta) override;
     
     Player* mPlayer;
+    Enemy* mEnemy;
 };
 
 #endif /* GameLayer_hpp */

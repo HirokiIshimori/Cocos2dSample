@@ -17,7 +17,7 @@ public:
     virtual bool update(const float &delta) override;
     virtual ~Player();
 private:
-    explicit Player(): mAnimFrame(0){}
+    explicit Player(): mAnimFrame(0), mStartMovePoint(cocos2d::Vec2(-1, -1)){}
     Player(const Player& rhs);
     Player& operator=(const Player& rhs);
     

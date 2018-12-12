@@ -8,6 +8,7 @@
 #include "GameLayer.hpp"
 #include "Player.hpp"
 #include "Objects.hpp"
+#include "Enemy.hpp"
 
 using namespace cocos2d;
 using namespace std;
@@ -31,6 +32,9 @@ bool GameLayer::init()
     mPlayer = Player::create(Vec2(winSize.width * 0.5, winSize.height * 0.25), this);
     mPlayer->retain();
     
+    mEnemy = Enemy::create(Vec2(winSize.width * 0.5, winSize.height * 0.5), this);
+    mEnemy->retain();
+    
     // 更新処理を行うようにする.
     this->scheduleUpdate();
 
@@ -45,9 +49,11 @@ bool GameLayer::init()
 void GameLayer::update(float delta) {
     Objects::update(delta);
     mPlayer->update(delta);
+    mEnemy->update(delta);
 }
 
 GameLayer::~GameLayer() {
     CC_SAFE_RELEASE_NULL(mPlayer);
+    CC_SAFE_RELEASE_NULL(mEnemy);
     Objects::reset();
 }
