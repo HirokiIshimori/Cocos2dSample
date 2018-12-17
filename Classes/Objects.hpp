@@ -17,6 +17,7 @@ public:
     static void reset();
     static void addBullet(Bullet* bullet);
     static void update(const float &delta);
+    static std::vector<std::shared_ptr<Bullet>> getBullets();
 private:
     explicit Objects();
     Objects(const Objects& rhs);

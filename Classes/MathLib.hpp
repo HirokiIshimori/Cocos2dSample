@@ -25,6 +25,12 @@ public:
     static cocos2d::Vec2 getPointOnCircumference(const cocos2d::Vec2 &centerPos, const float &r, const float &angle) {
         return cocos2d::Vec2(centerPos.x + r * cosf(angle), centerPos.y + r * sinf(angle));
     }
+    
+    static bool getIsHitCircle(const cocos2d::Vec2 &aPos, const cocos2d::Vec2 &bPos, const float &aR, const float &bR) {
+        cocos2d::Vec2 d = bPos - aPos;
+        float h = aR + bR;
+        return d.x * d.x + d.y * d.y < h * h;
+    }
 };
 
 #endif /* MathLib_hpp */

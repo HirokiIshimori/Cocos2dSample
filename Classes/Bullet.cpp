@@ -10,16 +10,23 @@
 #include "GameLayer.hpp"
 #include "MathLib.hpp"
 #include "Objects.hpp"
+#include "Collision.hpp"
+#include "Player.hpp"
+#include "Enemy.hpp"
 
 using namespace cocos2d;
 using namespace std;
 
-ParticleBatchNode* Bullet::mEffectNode = nullptr;
+class Player;
+class Enemy;
 
-Bullet* Bullet::create(const Vec2 &pos, const Vec2 &moveVec, const string& fileName, const ZIndex& z) {
+ParticleBatchNode* Bullet::mEffectNode = nullptr;
+unsigned int Bullet::mIndex = 0;
+
+Bullet* Bullet::create(const Vec2 &pos, const Vec2 &moveVec, const string& fileName, const ZIndex& z, const BulletType &type) {
     Bullet *pBullet = new Bullet();
     
-    if (pBullet && pBullet->init(pos, moveVec, fileName, z)) {
+    if (pBullet && pBullet->init(pos, moveVec, fileName, z, type)) {
         pBullet->autorelease();
         return pBullet;
     } else {
@@ -30,7 +37,7 @@ Bullet* Bullet::create(const Vec2 &pos, const Vec2 &moveVec, const string& fileN
     return nullptr;
 }
 
-bool Bullet::init(const Vec2 &pos, const Vec2 &moveVec, const string& fileName, const ZIndex& z) {
+bool Bullet::init(const Vec2 &pos, const Vec2 &moveVec, const string& fileName, const ZIndex& z, const BulletType &type) {
     mParticle = ParticleSystemQuad::create(fileName);
     if (mParticle == nullptr) {
         return false;
@@ -49,10 +56,30 @@ bool Bullet::init(const Vec2 &pos, const Vec2 &moveVec, const string& fileName, 
     mParticle->setPosition(pos);
     mParticle->setAutoRemoveOnFinish(true);
     Bullet::mEffectNode->addChild(mParticle, z);
-    return this->Mover::init(moveVec);
+    mType = type;
+    mIsDie = false;
+    
+    auto order = [this](float delta){
+        this->orderCollision(delta);
+    };
+    
+    auto hitHandler = [this](Mover* mover){
+        this->hitHandler(mover);
+    };
+
+    auto collision = Collision::create(Bullet::mIndex++, true, pos, 1, order, hitHandler);
+    collision->retain();
+    
+    auto collisionGroupType = mType == BulletPlayer ? CollisionPlayerBullets : CollisionEnemyBullets;
+    gameLayer->addCollision(collision, collisionGroupType);
+    return this->Mover::init(moveVec, collision, collisionGroupType);
 }
 
 bool Bullet::update(const float& delta) {
+    if (mIsDie) {
+        return false;
+    }
+    
     auto newPos = mParticle->getPosition() + mMoveVec;
     auto winSize = Director::getInstance()->getWinSize();
     
@@ -73,7 +100,7 @@ void Bullet::shootDirectionalBullet(const Vec2 &position, const float &speed, co
     ZIndex z;
     
     switch (type) {
-        case BulletMyChara:
+        case BulletPlayer:
             fileName = "bullet1.plist";
             z = ZWeapon;
             break;
@@ -82,7 +109,7 @@ void Bullet::shootDirectionalBullet(const Vec2 &position, const float &speed, co
             z = ZBullet;
         break;
     }
-    auto bullet = Bullet::create(position, MathLib::radianToVec(angle) * speed, fileName, z);
+    auto bullet = Bullet::create(position, MathLib::radianToVec(angle) * speed, fileName, z, type);
     bullet->retain();
     Objects::addBullet(bullet);
 }
@@ -98,6 +125,20 @@ void Bullet::clearBatchNode() {
         Bullet::mEffectNode->removeFromParentAndCleanup(true);
         Bullet::mEffectNode = nullptr;
     }
+}
+
+void Bullet::orderCollision(float delta) {
+    mCollision->setPoint(mParticle->getPosition());
+}
+
+void Bullet::hitHandler(Mover* mover) {
+    if ( (dynamic_cast<Player*>(mover) != nullptr && mType == BulletEnemy) || (dynamic_cast<Enemy*>(mover) != nullptr && mType == BulletPlayer) ) {
+        mIsDie = true;
+    }
+}
+
+BulletType Bullet::getType() const {
+    return mType;
 }
 
 Bullet::~Bullet() {

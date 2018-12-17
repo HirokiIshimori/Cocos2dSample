@@ -10,12 +10,16 @@
 
 #include "Character.hpp"
 
+class GameLayer;
+
 class Enemy : public Character {
 public:
-    static Enemy* create(const cocos2d::Vec2 &pos, cocos2d::Layer* layer);
-    bool init(const cocos2d::Vec2 &pos, cocos2d::Layer* layer);
+    static Enemy* create(const cocos2d::Vec2 &pos, GameLayer* layer);
+    bool init(const cocos2d::Vec2 &pos, GameLayer* layer);
     virtual bool update(const float &delta) override;
     virtual ~Enemy();
+    
+    virtual void hitHandler(Mover* mover) override;    
 private:
     explicit Enemy(): mAnimFrame(0){}
     Enemy(const Enemy& rhs);

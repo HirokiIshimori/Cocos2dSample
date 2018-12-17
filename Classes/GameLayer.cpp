@@ -29,12 +29,17 @@ bool GameLayer::init()
     label->setPosition(Vec2(winSize.width * 0.5, winSize.height * 0.5));
     this->addChild(label, -1);
     
+    mCollisionGroup = CollisionGroup::create();
+    mCollisionGroup->retain();
+    
     mPlayer = Player::create(Vec2(winSize.width * 0.5, winSize.height * 0.25), this);
     mPlayer->retain();
+    mCollisionGroup->setPlayer(mPlayer);
     
     mEnemy = Enemy::create(Vec2(winSize.width * 0.5, winSize.height * 0.5), this);
     mEnemy->retain();
-    
+    mCollisionGroup->setEnemy(mEnemy);
+        
     // 更新処理を行うようにする.
     this->scheduleUpdate();
 
@@ -50,10 +55,20 @@ void GameLayer::update(float delta) {
     Objects::update(delta);
     mPlayer->update(delta);
     mEnemy->update(delta);
+    mCollisionGroup->update(delta);
+}
+
+void GameLayer::addCollision(Collision* collision, const CollisionGroupType &type) {
+    mCollisionGroup->addCollision(collision, type);
+}
+
+void GameLayer::removeCollision(const unsigned int &num, const CollisionGroupType &type) {
+    mCollisionGroup->remove(num, type);
 }
 
 GameLayer::~GameLayer() {
     CC_SAFE_RELEASE_NULL(mPlayer);
     CC_SAFE_RELEASE_NULL(mEnemy);
+    CC_SAFE_RELEASE_NULL(mCollisionGroup);
     Objects::reset();
 }

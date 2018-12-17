@@ -8,14 +8,20 @@
 #ifndef GameLayer_hpp
 #define GameLayer_hpp
 
+#include "CollisionGroup.hpp"
+
 class Player;
 class Enemy;
+class CollisionGroup;
+class Collision;
 
 class GameLayer : public cocos2d::Layer
 {
 public:
     virtual bool init() override;
     CREATE_FUNC(GameLayer);
+    void addCollision(Collision* collision, const CollisionGroupType &type);
+    void removeCollision(const unsigned int &num, const CollisionGroupType &type);
 private:
     GameLayer(){};
     GameLayer(const GameLayer &rhs);
@@ -27,6 +33,7 @@ private:
     
     Player* mPlayer;
     Enemy* mEnemy;
+    CollisionGroup* mCollisionGroup;
 };
 
 #endif /* GameLayer_hpp */

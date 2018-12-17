@@ -10,11 +10,12 @@
 #include "TouchLayer.hpp"
 #include "Bullet.hpp"
 #include "MathLib.hpp"
+#include "Collision.hpp"
 
 using namespace cocos2d;
 using namespace std;
 
-Player* Player::create(const Vec2 &pos, Layer* layer) {
+Player* Player::create(const Vec2 &pos, GameLayer* layer) {
     Player *pPlayer = new Player();
     
     if (pPlayer && pPlayer->init(pos, layer)) {
@@ -28,8 +29,18 @@ Player* Player::create(const Vec2 &pos, Layer* layer) {
     return nullptr;
 }
 
-bool Player::init(const Vec2 &pos, Layer* layer) {
-    return this->Character::init(pos, Vec2::ZERO, ZPlayer, layer, "myShip.png");
+bool Player::init(const Vec2 &pos, GameLayer* layer) {
+    auto order = [this](float delta){
+        this->orderCollision(delta);
+    };
+    
+    auto hitHandler = [this](Mover* mover){
+        this->hitHandler(mover);
+    };
+    
+    auto collision = Collision::create(0, true, pos, 10, order, hitHandler);
+    collision->retain();
+    return this->Character::init(pos, Vec2::ZERO, ZPlayer, layer, "myShip.png", collision, CollisionPlayers);
 }
 
 bool Player::update(const float &delta) {
@@ -39,7 +50,7 @@ bool Player::update(const float &delta) {
     
     if (mAnimFrame % 4 == 0) {
         auto pos = mSprite->getPosition();
-        Bullet::shootDirectionalBullet(Vec2(pos.x, pos.y + 10), 10, 90 * MathLib::DEG_TO_RAD, BulletMyChara);
+        Bullet::shootDirectionalBullet(Vec2(pos.x, pos.y + 10), 10, 90 * MathLib::DEG_TO_RAD, BulletPlayer);
     }
     
     ++mAnimFrame;
@@ -68,6 +79,16 @@ bool Player::update(const float &delta) {
     return true;
 }
 
+void Player::hitHandler(Mover* mover) {
+    auto bullet = dynamic_cast<Bullet*>(mover);
+    if (bullet != nullptr) {
+        if (bullet->getType() != BulletEnemy) {
+            return;
+        }
+    }
+    CCLOG("damage");
+}
+
 Player::~Player() {
-    
+    CCLOG("remove Player");
 }

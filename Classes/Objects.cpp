@@ -28,3 +28,7 @@ void Objects::update(const float &delta) {
     });
     mBullets.erase(itrNewEnd, mBullets.end());
 }
+
+vector<shared_ptr<Bullet>> Objects::getBullets() {
+    return mBullets;
+}

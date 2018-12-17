@@ -6,19 +6,26 @@
 //
 
 #include "Character.hpp"
+#include "GameLayer.hpp"
+#include "Collision.hpp"
 
 using namespace cocos2d;
 using namespace std;
 
-bool Character::init(const Vec2 &pos, const Vec2 &moveVec, const ZIndex &zIndex, Layer* layer, const string& fileName) {
+bool Character::init(const Vec2 &pos, const Vec2 &moveVec, const ZIndex &zIndex, GameLayer* layer, const string& fileName, Collision* collision, const CollisionGroupType& collisionGroupType) {
     mSprite = Sprite::create(fileName);
-    if (mSprite == nullptr) {
+    if (mSprite == nullptr || collision == nullptr) {
         return false;
     }
     mSprite->setPosition(pos);
     mSprite->retain();
     layer->addChild(mSprite, zIndex);
-    return this->Mover::init(moveVec);
+    layer->addCollision(collision, collisionGroupType);
+    return this->Mover::init(moveVec, collision, collisionGroupType);
+}
+
+void Character::orderCollision(float delta) {
+    mCollision->setPoint(mSprite->getPosition());
 }
 
 /**

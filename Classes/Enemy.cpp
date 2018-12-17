@@ -7,13 +7,15 @@
 
 #include "Enemy.hpp"
 #include "MultiLayerScene.hpp"
+#include "GameLayer.hpp"
 #include "Bullet.hpp"
 #include "MathLib.hpp"
+#include "Collision.hpp"
 
 using namespace cocos2d;
 using namespace std;
 
-Enemy* Enemy::create(const Vec2 &pos, Layer* layer) {
+Enemy* Enemy::create(const Vec2 &pos, GameLayer* layer) {
     Enemy *pEnemy = new Enemy();
     
     if (pEnemy && pEnemy->init(pos, layer)) {
@@ -27,8 +29,18 @@ Enemy* Enemy::create(const Vec2 &pos, Layer* layer) {
     return nullptr;
 }
 
-bool Enemy::init(const Vec2 &pos, Layer* layer) {
-    return this->Character::init(pos, Vec2::ZERO, ZEnemy, layer, "enemy.png");
+bool Enemy::init(const Vec2 &pos, GameLayer* layer) {
+    auto order = [this](float delta){
+        this->orderCollision(delta);
+    };
+    
+    auto hitHandler = [this](Mover* mover){
+        this->hitHandler(mover);
+    };
+    
+    auto collision = Collision::create(0, true, pos, 10, order, hitHandler);
+    collision->retain();
+    return this->Character::init(pos, Vec2::ZERO, ZEnemy, layer, "enemy.png", collision, CollisionEnemys);
 }
 
 bool Enemy::update(const float &delta) {
@@ -54,6 +66,13 @@ bool Enemy::update(const float &delta) {
     ++mAnimFrame;
     
     return true;
+}
+
+void Enemy::hitHandler(Mover* mover) {
+    auto bullet = dynamic_cast<Bullet*>(mover);
+    if (bullet != nullptr && bullet->getType() == BulletPlayer) {
+        CCLOG("Enemy Damage");
+    }
 }
 
 Enemy::~Enemy() {

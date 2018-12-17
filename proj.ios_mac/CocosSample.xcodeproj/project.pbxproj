@@ -56,6 +56,8 @@
 		66D8EA8C21BDD9A600F50C22 /* MathLib.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66D8EA8A21BDD9A600F50C22 /* MathLib.cpp */; };
 		66D8EA8F21BDE96700F50C22 /* bullet1.png in Resources */ = {isa = PBXBuildFile; fileRef = 66D8EA8E21BDE96700F50C22 /* bullet1.png */; };
 		66D8EA9721C0C2CB00F50C22 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66D8EA9521C0C2CB00F50C22 /* Enemy.cpp */; };
+		66D8EA9A21C0EF2A00F50C22 /* Collision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66D8EA9821C0EF2A00F50C22 /* Collision.cpp */; };
+		66D8EA9D21C0F55600F50C22 /* CollisionGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66D8EA9B21C0F55600F50C22 /* CollisionGroup.cpp */; };
 		66FA203821BA29EB001C2537 /* bullet1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66FA203621BA29EB001C2537 /* bullet1.plist */; };
 		66FA203B21BA308A001C2537 /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66FA203921BA308A001C2537 /* Bullet.cpp */; };
 		66FA203E21BA43F3001C2537 /* Objects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66FA203C21BA43F3001C2537 /* Objects.cpp */; };
@@ -167,6 +169,11 @@
 		66D8EA8E21BDE96700F50C22 /* bullet1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bullet1.png; sourceTree = "<group>"; };
 		66D8EA9521C0C2CB00F50C22 /* Enemy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Enemy.cpp; sourceTree = "<group>"; };
 		66D8EA9621C0C2CB00F50C22 /* Enemy.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Enemy.hpp; sourceTree = "<group>"; };
+		66D8EA9821C0EF2A00F50C22 /* Collision.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Collision.cpp; sourceTree = "<group>"; };
+		66D8EA9921C0EF2A00F50C22 /* Collision.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Collision.hpp; sourceTree = "<group>"; };
+		66D8EA9B21C0F55600F50C22 /* CollisionGroup.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionGroup.cpp; sourceTree = "<group>"; };
+		66D8EA9C21C0F55600F50C22 /* CollisionGroup.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CollisionGroup.hpp; sourceTree = "<group>"; };
+		66D8EAA021C32FC200F50C22 /* CollisionGroupType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CollisionGroupType.hpp; sourceTree = "<group>"; };
 		66FA203621BA29EB001C2537 /* bullet1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bullet1.plist; sourceTree = "<group>"; };
 		66FA203921BA308A001C2537 /* Bullet.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Bullet.cpp; sourceTree = "<group>"; };
 		66FA203A21BA308A001C2537 /* Bullet.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Bullet.hpp; sourceTree = "<group>"; };
@@ -352,6 +359,11 @@
 				66FA203D21BA43F3001C2537 /* Objects.hpp */,
 				66D8EA8A21BDD9A600F50C22 /* MathLib.cpp */,
 				66D8EA8B21BDD9A600F50C22 /* MathLib.hpp */,
+				66D8EA9821C0EF2A00F50C22 /* Collision.cpp */,
+				66D8EA9921C0EF2A00F50C22 /* Collision.hpp */,
+				66D8EA9B21C0F55600F50C22 /* CollisionGroup.cpp */,
+				66D8EA9C21C0F55600F50C22 /* CollisionGroup.hpp */,
+				66D8EAA021C32FC200F50C22 /* CollisionGroupType.hpp */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -524,6 +536,7 @@
 				662213B921B5FE7400F4117A /* Mover.cpp in Sources */,
 				662213A921B514B500F4117A /* TouchLayer.cpp in Sources */,
 				1AF87B781F6F77F7007BE51C /* AppController.mm in Sources */,
+				66D8EA9D21C0F55600F50C22 /* CollisionGroup.cpp in Sources */,
 				662213AC21B5197000F4117A /* MultiLayerScene.cpp in Sources */,
 				662213BD21B6079100F4117A /* Player.cpp in Sources */,
 				66FA203E21BA43F3001C2537 /* Objects.cpp in Sources */,
@@ -531,6 +544,7 @@
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				66FA203B21BA308A001C2537 /* Bullet.cpp in Sources */,
 				66D8EA8C21BDD9A600F50C22 /* MathLib.cpp in Sources */,
+				66D8EA9A21C0EF2A00F50C22 /* Collision.cpp in Sources */,
 				1AF87B8A1F6F7822007BE51C /* main.m in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 				66D8EA9721C0C2CB00F50C22 /* Enemy.cpp in Sources */,
@@ -587,7 +601,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = ios/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_IOS_BEGIN)",
@@ -623,7 +637,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = ios/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_LDFLAGS = (
 					"$(_COCOS_LIB_IOS_BEGIN)",

@@ -10,12 +10,16 @@
 
 #include "Character.hpp"
 
+class GameLayer;
+
 class Player : public Character {
 public:
-    static Player* create(const cocos2d::Vec2 &pos, cocos2d::Layer* layer);
-    bool init(const cocos2d::Vec2 &pos, cocos2d::Layer* layer);
+    static Player* create(const cocos2d::Vec2 &pos, GameLayer* layer);
+    bool init(const cocos2d::Vec2 &pos, GameLayer* layer);
     virtual bool update(const float &delta) override;
     virtual ~Player();
+    virtual void hitHandler(Mover* mover) override;
+    
 private:
     explicit Player(): mAnimFrame(0), mStartMovePoint(cocos2d::Vec2(-1, -1)){}
     Player(const Player& rhs);
