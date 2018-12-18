@@ -17,12 +17,14 @@ public:
     static void reset();
     static void addBullet(Bullet* bullet);
     static void update(const float &delta);
-    static std::vector<std::shared_ptr<Bullet>> getBullets();
+    static std::vector<std::shared_ptr<Bullet>> getPlayerBullets();
+    static std::vector<std::shared_ptr<Bullet>> getEnemyBullets();
 private:
     explicit Objects();
     Objects(const Objects& rhs);
     Objects& operator=(const Objects& rhs);
-    static std::vector<std::shared_ptr<Bullet>> mBullets;
+    static std::vector<std::shared_ptr<Bullet>> mPlayerBullets;
+    static std::vector<std::shared_ptr<Bullet>> mEnemyBullets;
 };
 
 #endif /* Objects_hpp */

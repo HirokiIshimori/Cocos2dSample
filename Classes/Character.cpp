@@ -21,7 +21,7 @@ bool Character::init(const Vec2 &pos, const Vec2 &moveVec, const ZIndex &zIndex,
     mSprite->retain();
     layer->addChild(mSprite, zIndex);
     layer->addCollision(collision, collisionGroupType);
-    return this->Mover::init(moveVec, collision, collisionGroupType);
+    return this->Mover::init(moveVec, collision, collisionGroupType, layer);
 }
 
 void Character::orderCollision(float delta) {

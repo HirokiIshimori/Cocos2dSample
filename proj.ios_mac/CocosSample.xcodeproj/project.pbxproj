@@ -58,6 +58,7 @@
 		66D8EA9721C0C2CB00F50C22 /* Enemy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66D8EA9521C0C2CB00F50C22 /* Enemy.cpp */; };
 		66D8EA9A21C0EF2A00F50C22 /* Collision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66D8EA9821C0EF2A00F50C22 /* Collision.cpp */; };
 		66D8EA9D21C0F55600F50C22 /* CollisionGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66D8EA9B21C0F55600F50C22 /* CollisionGroup.cpp */; };
+		66D8EAA421C87DB800F50C22 /* CollisionView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66D8EAA221C87DB800F50C22 /* CollisionView.cpp */; };
 		66FA203821BA29EB001C2537 /* bullet1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66FA203621BA29EB001C2537 /* bullet1.plist */; };
 		66FA203B21BA308A001C2537 /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66FA203921BA308A001C2537 /* Bullet.cpp */; };
 		66FA203E21BA43F3001C2537 /* Objects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66FA203C21BA43F3001C2537 /* Objects.cpp */; };
@@ -174,6 +175,8 @@
 		66D8EA9B21C0F55600F50C22 /* CollisionGroup.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionGroup.cpp; sourceTree = "<group>"; };
 		66D8EA9C21C0F55600F50C22 /* CollisionGroup.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CollisionGroup.hpp; sourceTree = "<group>"; };
 		66D8EAA021C32FC200F50C22 /* CollisionGroupType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CollisionGroupType.hpp; sourceTree = "<group>"; };
+		66D8EAA221C87DB800F50C22 /* CollisionView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionView.cpp; sourceTree = "<group>"; };
+		66D8EAA321C87DB800F50C22 /* CollisionView.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CollisionView.hpp; sourceTree = "<group>"; };
 		66FA203621BA29EB001C2537 /* bullet1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bullet1.plist; sourceTree = "<group>"; };
 		66FA203921BA308A001C2537 /* Bullet.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Bullet.cpp; sourceTree = "<group>"; };
 		66FA203A21BA308A001C2537 /* Bullet.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Bullet.hpp; sourceTree = "<group>"; };
@@ -361,6 +364,8 @@
 				66D8EA8B21BDD9A600F50C22 /* MathLib.hpp */,
 				66D8EA9821C0EF2A00F50C22 /* Collision.cpp */,
 				66D8EA9921C0EF2A00F50C22 /* Collision.hpp */,
+				66D8EAA221C87DB800F50C22 /* CollisionView.cpp */,
+				66D8EAA321C87DB800F50C22 /* CollisionView.hpp */,
 				66D8EA9B21C0F55600F50C22 /* CollisionGroup.cpp */,
 				66D8EA9C21C0F55600F50C22 /* CollisionGroup.hpp */,
 				66D8EAA021C32FC200F50C22 /* CollisionGroupType.hpp */,
@@ -540,6 +545,7 @@
 				662213AC21B5197000F4117A /* MultiLayerScene.cpp in Sources */,
 				662213BD21B6079100F4117A /* Player.cpp in Sources */,
 				66FA203E21BA43F3001C2537 /* Objects.cpp in Sources */,
+				66D8EAA421C87DB800F50C22 /* CollisionView.cpp in Sources */,
 				1AF87B8B1F6F782A007BE51C /* RootViewController.mm in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				66FA203B21BA308A001C2537 /* Bullet.cpp in Sources */,

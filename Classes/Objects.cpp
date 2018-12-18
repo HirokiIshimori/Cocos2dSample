@@ -11,24 +11,39 @@
 using namespace std;
 using namespace cocos2d;
 
-std::vector<shared_ptr<Bullet>> Objects::mBullets;
+std::vector<shared_ptr<Bullet>> Objects::mPlayerBullets;
+std::vector<shared_ptr<Bullet>> Objects::mEnemyBullets;
 
 void Objects::reset() {
-    mBullets.clear();
+    mPlayerBullets.clear();
+    mEnemyBullets.clear();
     Bullet::clearBatchNode();
 }
 
 void Objects::addBullet(Bullet *bullet) {
-    mBullets.push_back(shared_ptr<Bullet>(bullet));
+    if (bullet->getType() == BulletPlayer) {
+        mPlayerBullets.push_back(shared_ptr<Bullet>(bullet));
+    } else {
+        mEnemyBullets.push_back(shared_ptr<Bullet>(bullet));
+    }
 }
 
 void Objects::update(const float &delta) {
-    auto itrNewEnd = remove_if(mBullets.begin(), mBullets.end(), [&delta](shared_ptr<Bullet> bullet) -> bool {
+    auto itrPlayerNewEnd = remove_if(mPlayerBullets.begin(), mPlayerBullets.end(), [&delta](shared_ptr<Bullet> bullet) -> bool {
         return !bullet->update(delta);
     });
-    mBullets.erase(itrNewEnd, mBullets.end());
+    mPlayerBullets.erase(itrPlayerNewEnd, mPlayerBullets.end());
+
+    auto itrEnemyNewEnd = remove_if(mEnemyBullets.begin(), mEnemyBullets.end(), [&delta](shared_ptr<Bullet> bullet) -> bool {
+        return !bullet->update(delta);
+    });
+    mEnemyBullets.erase(itrEnemyNewEnd, mEnemyBullets.end());
 }
 
-vector<shared_ptr<Bullet>> Objects::getBullets() {
-    return mBullets;
+vector<shared_ptr<Bullet>> Objects::getPlayerBullets() {
+    return mPlayerBullets;
+}
+
+vector<shared_ptr<Bullet>> Objects::getEnemyBullets() {
+    return mEnemyBullets;
 }

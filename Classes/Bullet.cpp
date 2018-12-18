@@ -72,7 +72,7 @@ bool Bullet::init(const Vec2 &pos, const Vec2 &moveVec, const string& fileName, 
     
     auto collisionGroupType = mType == BulletPlayer ? CollisionPlayerBullets : CollisionEnemyBullets;
     gameLayer->addCollision(collision, collisionGroupType);
-    return this->Mover::init(moveVec, collision, collisionGroupType);
+    return this->Mover::init(moveVec, collision, collisionGroupType, gameLayer);
 }
 
 bool Bullet::update(const float& delta) {

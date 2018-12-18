@@ -13,11 +13,13 @@
 #include "CollisionGroupType.hpp"
 
 class Collision;
+class CollisionView;
+class GameLayer;
 
 class Mover : public cocos2d::Ref
 {
 public:
-    bool init(const cocos2d::Vec2 &moveVec, Collision* collision, const CollisionGroupType& collisionGroupType);
+    bool init(const cocos2d::Vec2 &moveVec, Collision* collision, const CollisionGroupType& collisionGroupType, GameLayer* layer);
     virtual ~Mover();
     virtual bool update(const float &delta) = 0;
     Collision* getCollision() const;
@@ -27,6 +29,7 @@ public:
 protected:
     cocos2d::Vec2 mMoveVec;
     Collision* mCollision;
+    CollisionView* mCollisionView;
     CollisionGroupType mCollisionGroupType;
 private:
     Mover(const Mover& rhs);

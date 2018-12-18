@@ -12,7 +12,8 @@ enum ZIndex {
     ZPlayer = 0,
     ZEnemy,
     ZWeapon,
-    ZBullet
+    ZBullet,
+    ZCollision,
 };
 
 #endif /* ZIndex_h */

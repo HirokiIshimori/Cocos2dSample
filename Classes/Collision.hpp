@@ -24,6 +24,7 @@ public:
     float getRange() const;
     void hit();
     void setPoint(const cocos2d::Vec2& point);
+    bool getIsHit() const;
     std::function<void(float)> mOrder;
     std::function<void(Mover*)> mHitHandler;
 private:

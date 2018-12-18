@@ -31,6 +31,7 @@ bool GameLayer::init()
     
     mCollisionGroup = CollisionGroup::create();
     mCollisionGroup->retain();
+    mCollisionGroup->setLayer(this);
     
     mPlayer = Player::create(Vec2(winSize.width * 0.5, winSize.height * 0.25), this);
     mPlayer->retain();
@@ -64,6 +65,14 @@ void GameLayer::addCollision(Collision* collision, const CollisionGroupType &typ
 
 void GameLayer::removeCollision(const unsigned int &num, const CollisionGroupType &type) {
     mCollisionGroup->remove(num, type);
+}
+
+void GameLayer::addCollisionView(CollisionView* collisionView, const CollisionGroupType &type) {
+    mCollisionGroup->addCollisionView(collisionView, type);
+}
+
+void GameLayer::removeCollisionView(const unsigned int &num, const CollisionGroupType &type) {
+    mCollisionGroup->removeView(num, type);
 }
 
 GameLayer::~GameLayer() {

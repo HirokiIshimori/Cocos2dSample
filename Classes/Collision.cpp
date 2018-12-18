@@ -65,6 +65,10 @@ void Collision::setPoint(const cocos2d::Vec2& point) {
     mPoint = point;
 }
 
+bool Collision::getIsHit() const {
+    return mIsHit;
+}
+
 Collision::~Collision() {
     mHitHandler = nullptr;
     mOrder = nullptr;
