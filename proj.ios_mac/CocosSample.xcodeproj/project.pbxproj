@@ -59,6 +59,7 @@
 		66D8EA9A21C0EF2A00F50C22 /* Collision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66D8EA9821C0EF2A00F50C22 /* Collision.cpp */; };
 		66D8EA9D21C0F55600F50C22 /* CollisionGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66D8EA9B21C0F55600F50C22 /* CollisionGroup.cpp */; };
 		66D8EAA421C87DB800F50C22 /* CollisionView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66D8EAA221C87DB800F50C22 /* CollisionView.cpp */; };
+		66D8EAA621C9D98900F50C22 /* Game.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 66D8EAA521C9D98800F50C22 /* Game.mp3 */; };
 		66FA203821BA29EB001C2537 /* bullet1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66FA203621BA29EB001C2537 /* bullet1.plist */; };
 		66FA203B21BA308A001C2537 /* Bullet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66FA203921BA308A001C2537 /* Bullet.cpp */; };
 		66FA203E21BA43F3001C2537 /* Objects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66FA203C21BA43F3001C2537 /* Objects.cpp */; };
@@ -177,6 +178,7 @@
 		66D8EAA021C32FC200F50C22 /* CollisionGroupType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CollisionGroupType.hpp; sourceTree = "<group>"; };
 		66D8EAA221C87DB800F50C22 /* CollisionView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CollisionView.cpp; sourceTree = "<group>"; };
 		66D8EAA321C87DB800F50C22 /* CollisionView.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CollisionView.hpp; sourceTree = "<group>"; };
+		66D8EAA521C9D98800F50C22 /* Game.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Game.mp3; sourceTree = "<group>"; };
 		66FA203621BA29EB001C2537 /* bullet1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = bullet1.plist; sourceTree = "<group>"; };
 		66FA203921BA308A001C2537 /* Bullet.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Bullet.cpp; sourceTree = "<group>"; };
 		66FA203A21BA308A001C2537 /* Bullet.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Bullet.hpp; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				66D8EA8E21BDE96700F50C22 /* bullet1.png */,
 				66FA203621BA29EB001C2537 /* bullet1.plist */,
 				66FA204021BA68E4001C2537 /* bullet2.plist */,
+				66D8EAA521C9D98800F50C22 /* Game.mp3 */,
 			);
 			name = Resources;
 			path = ../Resources;
@@ -508,6 +511,7 @@
 				662213C121B614C300F4117A /* enemy.png in Resources */,
 				46880B7D19C43A67006E1F66 /* CloseSelected.png in Resources */,
 				521A8EA919F11F5000D177D7 /* fonts in Resources */,
+				66D8EAA621C9D98900F50C22 /* Game.mp3 in Resources */,
 				3EACC98F19EE6D4300EB3C5E /* res in Resources */,
 				1AF87B891F6F781D007BE51C /* LaunchScreenBackground.png in Resources */,
 				46880B7B19C43A67006E1F66 /* CloseNormal.png in Resources */,

@@ -9,9 +9,11 @@
 #include "Player.hpp"
 #include "Objects.hpp"
 #include "Enemy.hpp"
+#include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
 using namespace std;
+using namespace CocosDenshion;
 
 /**
  ゲームの初期化処理.
@@ -43,6 +45,8 @@ bool GameLayer::init()
         
     // 更新処理を行うようにする.
     this->scheduleUpdate();
+    
+    SimpleAudioEngine::getInstance()->playBackgroundMusic("Game.mp3", true);
 
     return true;
 }
