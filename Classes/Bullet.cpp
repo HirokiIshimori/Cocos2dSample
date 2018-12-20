@@ -17,9 +17,6 @@
 using namespace cocos2d;
 using namespace std;
 
-class Player;
-class Enemy;
-
 ParticleBatchNode* Bullet::mEffectNode = nullptr;
 unsigned int Bullet::mIndex = 0;
 

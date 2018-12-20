@@ -8,7 +8,7 @@
 #ifndef GameLayer_hpp
 #define GameLayer_hpp
 
-#include "CollisionGroup.hpp"
+#include "CollisionGroupType.hpp"
 
 class Player;
 class Enemy;

@@ -18,6 +18,8 @@ public:
     bool init(const cocos2d::Vec2 &pos, GameLayer* layer);
     virtual bool update(const float &delta) override;
     virtual ~Player();
+
+protected:
     virtual void hitHandler(Mover* mover) override;
     
 private:

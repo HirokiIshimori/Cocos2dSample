@@ -9,6 +9,7 @@
 #include "Player.hpp"
 #include "Objects.hpp"
 #include "Enemy.hpp"
+#include "CollisionGroup.hpp"
 #include "SimpleAudioEngine.h"
 
 using namespace cocos2d;
