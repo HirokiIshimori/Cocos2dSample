@@ -6,7 +6,6 @@
 //
 
 #include "Collision.hpp"
-#include "Character.hpp"
 
 using namespace cocos2d;
 using namespace std;
